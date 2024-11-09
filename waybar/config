@@ -1,78 +1,100 @@
-{
-    "position": "bottom",  //(top|bottom|left|right) 
-    "height": 24,
-    "modules-center": ["hyprland/workspaces"],
-    "modules-right":["pulseaudio","network","battery","clock","custom/exit"],
-    "margin":0,
-    "spacing":6,
-    //workspace
-    "hyprland/workspaces": {
-      "format": "{icon}",
-      "on-click": "activate",
-      "format-icons": {
-        "active": " "
-      },
-      "sort-by-number": true,
-      "persistent-workspaces": {
-        "*": 4
-      }
-    },
-    //clock
-    "clock": {
-    "interval": 60,
-    "format": "{:%H:%M } ",
-    "format-alt": "{:%d/%m/%Y} ",
-    "max-length": 25,
-    "tooltip": false
-    },
-    //power btn
-    "custom/exit": {
-    "format": "",
-    "on-click": "wlogout",
-    "tooltip-format": "Power Menu"
-    },
-    "battery": {
-        "states": {
-            "good": 95,
-            "warning": 30,
-            "critical": 15
-        },
-        "format": "{icon} {capacity}%",
-        "format-charging": " {capacity}%",
-        "format-plugged": " {capacity}%",
-        "format-alt": "{icon} {time}",
-        // "format-good": "", // An empty format will hide the module
-        // "format-full": "",
-        "format-icons": ["", "", "", "", ""]
-    },
-    "network": {
-        // "interface": "wlp2*", // (Optional) To force the use of this interface
-        "format-wifi": "{essid} ({signalStrength}%) ",
-        "format-ethernet": " {ifname}",
-        "tooltip-format": " {ifname} via {gwaddr}",
-        "format-linked": " {ifname} (No IP)",
-        "format-disconnected": "Disconnected ⚠ {ifname}",
-        "format-alt": " {ifname}: {ipaddr}/{cidr}"
-    },
-    "pulseaudio": {
-        "scroll-step": 5, // %, can be a float
-        "format": "{icon} {volume}% {format_source}",
-        "format-bluetooth": " {icon} {volume}% {format_source}",
-        "format-bluetooth-muted": "  {icon} {format_source}",
-        "format-muted": "  {format_source}",
-        "format-source": " {volume}%",
-        "format-source-muted": "",
-        "format-icons": {
-//            "headphone": "",
-//            "hands-free": "",
-//            "headset": "",
-//            "phone": "",
-//            "portable": "",
-//            "car": "",
-            "default": ["", "", ""]
-        },
-        "on-click": "pavucontrol",
-        "on-click-right": "foot -a pw-top pw-top"
-    }
 
+{
+  "layer": "top", // Waybar at top layer
+  "position": "bottom", // Waybar position (top|bottom|left|right)
+  "height": 5, // Waybar height (to be removed for auto height)
+  // "width": 1280, // Waybar width
+  // Choose the order of the modules
+
+  "modules-left": ["hyprland/workspaces"],
+  "modules-center": ["sway/window"],
+  "modules-right": ["pulseaudio", "network", "backlight","memory","battery", "battery#bat2", "clock", "tray"],
+  //Modules configuration
+  "hyprland/workspaces": {
+      "disable-scroll": true,
+      "all-outputs": true,
+      "format": "{name}: {icon}",
+      "format-icons": {
+          "1": "",
+          "2": "",
+          "3": "",
+          "4": "",
+          "5": "",
+          "urgent": "",
+          "focused": "",
+          "default": ""
+      }
+  },
+    
+  "idle_inhibitor": {
+      "format": "{icon}",
+      "format-icons": {
+          "activated": "",
+          "deactivated": ""
+      }
+  },
+  "tray": {
+      // "icon-size": 21,
+      "spacing": 10
+  },
+  "clock": {
+      "format": "{:%I:%M }",
+      "format-alt": "{:%Y-%m-%d}",
+      "tooltip": false
+    },
+  "memory": {
+  "format": " {}"
+  },
+  "backlight": {
+    "format": " {percent}%",
+    "interval": 2,
+"on-scroll-up": "exec .//home/mishal/.config/waybar/reduce.shm",
+    "on-scroll-down": "brightnessctl -c backlight set +3% ",
+    "tooltip": true
+  },
+
+  "battery": {
+    "interval": 2,
+      "states": {
+          "good": 95,
+          "warning": 30,
+          "critical": 15
+      },
+      "format": "{capacity}% ",
+      "format-charging": " {capacity}%",
+      "format-plugged": " {capacity}%",
+      "format-alt": "{time} ",
+      // "format-good": "", // An empty format will hide the module
+      // "format-full": "",
+      // "format-icons": ["", "", "", "", ""]
+  },
+  "battery#bat2": {
+      "bat": "BAT2"
+  },
+  "network": {
+      // "interface": "wlp2*", // (Optional) To force the use of this interface
+      "format-wifi": "{essid} ({signalStrength}%) ",
+      "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
+      "format-linked": "{ifname} (No IP) ",
+      "format-disconnected": "Disconnected ",
+      "format-alt": "{ifname}: {ipaddr}/{cidr}"
+  },
+  "pulseaudio": {
+      // "scroll-step": 1, // %, can be a float
+      "format": "{volume}%  {format_source}",
+      "format-bluetooth": "{volume}%  {format_source}",
+      "format-bluetooth-muted": " {format_source}",
+      "format-muted": " {format_source}",
+      "format-source": "{volume}% ",
+      "format-source-muted": "",
+      "on-click": "pavucontrol"
+  },
+  "custom/media": {
+      "format": " {}",
+      "return-type": "json",
+      "max-length": 40,
+      "escape": true,
+      "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
+      // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+  }
 }
