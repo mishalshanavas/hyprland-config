@@ -1,0 +1,286 @@
+{
+    "position": "top",  // Waybar position (top|bottom|left|right)
+    "height": 5,           // Waybar height (to be removed for auto height)
+    "modules-left": ["hyprland/workspaces"],
+    "modules-center": ["hyperland/window"],
+    "modules-right": ["pulseaudio", "network", "backlight", "cpu", "memory", "battery", "battery#bat2", "clock", "tray"],
+    
+    // Workspaces module configuration (Assuming Hyperland supports this module similarly)
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "format": "{name}: {icon}",
+        "format-icons": {
+            "1": "",
+            "2": "",
+            "3": "",
+            "4": "",
+            "5": "",
+            "urgent": "",
+            "focused": "",
+            "default": ""
+        }
+    },
+
+    // MPD (Music Player Daemon) configuration
+    "mpd": {
+        "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ ",
+        "format-disconnected": "Disconnected ",
+        "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
+        "unknown-tag": "N/A",
+        "interval": 2,
+        "consume-icons": {
+            "on": " "
+        },
+        "random-icons": {
+            "off": "<span color=\"#f53c3c\"></span> ",
+            "on": " "
+        },
+        "repeat-icons": {
+            "on": " "
+        },
+        "single-icons": {
+            "on": "1 "
+        },
+        "state-icons": {
+            "paused": "",
+            "playing": ""
+        },
+        "tooltip-format": "MPD (connected)",
+        "tooltip-format-disconnected": "MPD (disconnected)"
+    },
+
+    // Idle Inhibitor module
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+
+    // Tray configuration
+    "tray": {
+        "spacing": 10
+    },
+
+    // Clock configuration
+    "clock": {
+        "format": "{:%I:%M }",
+        "format-alt": "{:%Y-%m-%d}"
+    },
+
+    // CPU usage module
+    "cpu": {
+        "format": "{usage}% ",
+        "tooltip": false
+    },
+
+    // Memory usage module
+    "memory": {
+        "format": "{}% "
+    },
+
+    // Temperature sensor module (Optional)
+    "temperature": {
+        "critical-threshold": 80,
+        "format": "{temperatureC}°C {icon}",
+        "format-icons": ["", "", ""]
+    },
+
+    // Backlight module
+    "backlight": {
+        "format": "{percent}% ",
+        "format-icons": ["", ""]
+    },
+
+    // Battery module configuration
+    "battery": {
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}% ",
+        "format-charging": "{capacity}%",
+        "format-plugged": "{capacity}%",
+        "format-alt": "{time} "
+    },
+
+    // Second battery (if applicable)
+    "battery#bat2": {
+        "bat": "BAT2"
+    },
+
+    // Network module (for WiFi/ethernet)
+    "network": {
+        "format-wifi": "{essid} ({signalStrength}%) ",
+        "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "Disconnected ",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+    },
+
+    // PulseAudio volume module
+    "pulseaudio": {
+        "format": "{volume}%  {format_source}",
+        "format-bluetooth": "{volume}%  {format_source}",
+        "format-bluetooth-muted": " {format_source}",
+        "format-muted": " {format_source}",
+        "format-source": "{volume}% ",
+        "format-source-muted": "",
+        "on-click": "pavucontrol"
+    },
+
+    // Custom media player script (example for controlling media players)
+    "custom/media": {
+        "format": " {}",
+        "return-type": "json",
+        "max-length": 40,
+        "escape": true,
+        "exec": "$HOME/.config/hyperland/mediaplayer.py 2> /dev/null" // Adjusted path for Hyperland
+    }
+}
+{
+    "position": "top",  // Waybar position (top|bottom|left|right)
+    "height": 5,           // Waybar height (to be removed for auto height)
+    "modules-left": ["hyprland/workspaces"],
+    "modules-center": ["hyperland/window"],
+    "modules-right": ["pulseaudio", "network", "backlight", "cpu", "memory", "battery", "battery#bat2", "clock", "tray"],
+    
+    // Workspaces module configuration (Assuming Hyperland supports this module similarly)
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "format": "{name}: {icon}",
+        "format-icons": {
+            "1": "",
+            "2": "",
+            "3": "",
+            "4": "",
+            "5": "",
+            "urgent": "",
+            "focused": "",
+            "default": ""
+        }
+    },
+
+    // MPD (Music Player Daemon) configuration
+    "mpd": {
+        "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ ",
+        "format-disconnected": "Disconnected ",
+        "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
+        "unknown-tag": "N/A",
+        "interval": 2,
+        "consume-icons": {
+            "on": " "
+        },
+        "random-icons": {
+            "off": "<span color=\"#f53c3c\"></span> ",
+            "on": " "
+        },
+        "repeat-icons": {
+            "on": " "
+        },
+        "single-icons": {
+            "on": "1 "
+        },
+        "state-icons": {
+            "paused": "",
+            "playing": ""
+        },
+        "tooltip-format": "MPD (connected)",
+        "tooltip-format-disconnected": "MPD (disconnected)"
+    },
+
+    // Idle Inhibitor module
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+
+    // Tray configuration
+    "tray": {
+        "spacing": 10
+    },
+
+    // Clock configuration
+    "clock": {
+        "format": "{:%I:%M }",
+        "format-alt": "{:%Y-%m-%d}"
+    },
+
+    // CPU usage module
+    "cpu": {
+        "format": "{usage}% ",
+        "tooltip": false
+    },
+
+    // Memory usage module
+    "memory": {
+        "format": "{}% "
+    },
+
+    // Temperature sensor module (Optional)
+    "temperature": {
+        "critical-threshold": 80,
+        "format": "{temperatureC}°C {icon}",
+        "format-icons": ["", "", ""]
+    },
+
+    // Backlight module
+    "backlight": {
+        "format": "{percent}% ",
+        "format-icons": ["", ""]
+    },
+
+    // Battery module configuration
+    "battery": {
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}% ",
+        "format-charging": "{capacity}%",
+        "format-plugged": "{capacity}%",
+        "format-alt": "{time} "
+    },
+
+    // Second battery (if applicable)
+    "battery#bat2": {
+        "bat": "BAT2"
+    },
+
+    // Network module (for WiFi/ethernet)
+    "network": {
+        "format-wifi": "{essid} ({signalStrength}%) ",
+        "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "Disconnected ",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+    },
+
+    // PulseAudio volume module
+    "pulseaudio": {
+        "format": "{volume}%  {format_source}",
+        "format-bluetooth": "{volume}%  {format_source}",
+        "format-bluetooth-muted": " {format_source}",
+        "format-muted": " {format_source}",
+        "format-source": "{volume}% ",
+        "format-source-muted": "",
+        "on-click": "pavucontrol"
+    },
+
+    // Custom media player script (example for controlling media players)
+    "custom/media": {
+        "format": " {}",
+        "return-type": "json",
+        "max-length": 40,
+        "escape": true,
+        "exec": "$HOME/.config/hyperland/mediaplayer.py 2> /dev/null" // Adjusted path for Hyperland
+    }
+}

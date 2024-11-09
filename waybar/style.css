@@ -1,0 +1,106 @@
+/* General Styles for Modules */
+#clock, #battery, #cpu, #memory, #disk, #temperature, #backlight, 
+#network, #pulseaudio, #wireplumber, #custom-media, #tray, #mode, 
+#idle_inhibitor, #scratchpad, #mpd {
+    margin: 2px;
+    padding-left: 4px;
+    padding-right: 4px;
+    background-color: rgba(0, 0, 0, 0.3);
+    color: #ffffff;
+}
+
+/* Specific Module Styles */
+
+/* Clock */
+#clock {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* Battery */
+#battery {
+    color: red;
+}
+
+#battery.charging, #battery.plugged {
+    color: #ffffff;
+    background-color: #26A65B;
+}
+
+@keyframes blink {
+    to {
+        background-color: #ffffff;
+        color: #000000;
+    }
+}
+
+#battery.warning:not(.charging),
+#battery.critical:not(.charging) {
+    background-color: #f53c3c;
+    color: #ffffff;
+    animation: blink 0.5s linear infinite alternate;
+}
+
+/* Network */
+#network {
+    color: #ffffff;
+}
+
+#network.disconnected {
+    background-color: #f53c3c;
+}
+
+/* Temperature */
+#temperature.critical {
+    background-color: #eb4d4b;
+}
+
+/* Idle Inhibitor */
+#idle_inhibitor.activated {
+    background-color: #ecf0f1;
+    color: #2d3436;
+}
+
+/* Tray */
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: #eb4d4b;
+}
+
+/* Audio (PulseAudio) */
+#pulseaudio {
+    color: #ffffff;
+}
+
+
+
+/* Network - WiFi */
+#network format-wifi {
+    color: #ffffff;
+    font-weight: bold;
+}
+
+/* Custom Workspaces Button */
+#workspaces button {
+    padding: 0 4px;
+}
+
+#workspaces button.focused {
+    background-color: rgba(0, 0, 0, 0.3);
+    color: #c9545d;
+    border-top: 2px solid #c9545d;
+}
+
+#workspaces button.urgent {
+    background-color: #eb4d4b;
+}
+
+/* Mode (e.g. Desktop, Laptop) */
+#mode {
+    background-color: #64727D;
+    border-bottom: 3px solid #ffffff;
+}
